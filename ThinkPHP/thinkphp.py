@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # ThinkPHP exploit loader by prism131 and Entity
 
-import threading, sys, time, random, socket, subprocess, re, os, base64, struct, array, requests
+import threading, sys, time, random, socket, subprocess, re, os, struct, array, requests
 from threading import Thread
 from time import sleep
 import requests
